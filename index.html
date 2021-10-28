@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Numerical taxonomy of urban form in Amsterdam and Prague</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+        <!-- legend styles -->
+    <style type='text/css'>
+        body {
+            font-family: sans-serif;
+        }
+       .maplegend {
+            position: absolute;
+            z-index: 9999;
+            background-color: rgba(255, 255, 255, .8);
+            border-radius: 5px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            padding: 10px;
+            font-size: 12px/14px;
+            right: 10px;
+            bottom: 20px;
+            display: none;
+            width: 45%;
+        }
+
+        #maptitle {
+            position: absolute;
+            z-index: 9999;
+            background-color: rgba(255, 255, 255, .8);
+            border-radius: 5px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            margin-left: 20px;
+            font-size: 12px;
+            right: 10px;
+            top: 20px;
+            max-width: 480px;
+/*             height: 50%; */
+            display: none;
+        }
+
+        div.overflow {
+            overflow-y: auto;
+            height: 100%;
+        }
+
+        button.toggle-title {
+            position: absolute;
+            z-index: 99999;
+            background-color: rgba(0, 0, 0, .8);
+            color: white;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+            border: 0;
+            padding: 5px;
+            font-size: 12px;
+            right: 10px;
+            top: 20px;
+        }
+
+        button.toggle-legend {
+            position: absolute;
+            z-index: 99999;
+            background-color: rgba(0, 0, 0, .8);
+            color: white;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+            border: 0;
+            padding: 5px;
+            font-size: 12px;
+            right: 10px;
+            bottom: 20px;
+        }
+
+        @media only screen and (min-width: 1920px) {
+
+            button.toggle-title,
+            button.toggle-legend {
+                padding: 10px;
+                font-size: 18px;
+            }
+        }
+    </style>
+
+    <script>
+        function toggleTitle() {
+            var x = document.getElementById("maptitle");
+            if (x.style.display === "block") {
+                x.style.display = "none";
+            } else {
+                x.style.display = "block";
+            }
+        };
+
+        function toggleLegend() {
+            var x = document.getElementById("maplegend signaturetype");
+            if (x.style.display === "block") {
+                x.style.display = "none";
+            } else {
+                x.style.display = "block";
+            }
+        }
+    </script>
+</head>
+
+<body style='margin:0; height:100vh'>
+    
+
+    
+<iframe src="ams.html" width="49.9%" height="100%" style="border: none;"></iframe>
+<iframe src="prg.html" width="49.9%" height="100%" style="border: none; float: right;"></iframe>
+    <button onclick="toggleTitle()" class="toggle-title">Details</button>
+<div id="maptitle">
+    <div class="overflow">
+        <h1>Numerical taxonomy of urban form in Amsterdam and Prague</h1>
+        <p>
+        These maps present a result of a research presented in the manuscript <em>Methodological Foundation of a Numerical Taxonomy of Urban Form</em>. They represent types of urban form automatically detected using urban morphometrics and their taxonomy - hierarchical classification based on the similarity of the types.
+        </p>
+            <p>
+        The legend shows the dendrogram representing the results of Ward’s hierarchical clustering of urban form types from a combined pool of Prague and Amsterdam. Its y-axis shows cophenetic distance between individual clusters, i.e. their morphometric dis-similarity. Branches are interpretatively coloured - the colours are then used on maps illustrating spatial distribution of these branches.
+        </p>
+            <p>
+        For details see the original paper or the <a href="https://github.com/martinfleis/numerical-taxonomy-paper">code & data repository</a>.</p>
+        
+        <p><em>
+            Fleischmann M, Feliciotti A, Romice O and Porta S (2021) Methodological Foundation of a Numerical Taxonomy of Urban Form. Environment and Planning B: Urban Analytics and City Science (accepted, in press)
+            </em></p>
+        
+        Contact: <a href="mailto:martin@martinfleischmann.net">martin@martinfleischmann.net</a>
+    </div>
+</div>
+    <!-- legend -->
+    <button onclick="toggleLegend()" class="toggle-legend">Legend</button>
+    <div id='maplegend signaturetype' class='maplegend'>
+        <div class='legend-scale'>
+            <img src="dendrogram.svg" width="100%">
+        </div>
+    </div>
+</body>
+
+</html>

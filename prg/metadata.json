@@ -1,0 +1,14 @@
+{
+"name": "prg/",
+"description": "prg/",
+"version": "2",
+"minzoom": "0",
+"maxzoom": "15",
+"center": "14.419556,50.081819,15",
+"bounds": "14.259002,49.943323,14.694115,50.171895",
+"type": "overlay",
+"format": "pbf",
+"generator": "tippecanoe v1.36.0",
+"generator_options": "tippecanoe -z15 --no-tile-compression '--output-to-directory=prg/' --drop-densest-as-needed -f prg.geojson",
+"json": "{\"vector_layers\": [ { \"id\": \"prg\", \"description\": \"\", \"minzoom\": 0, \"maxzoom\": 15, \"fields\": {\"cluster\": \"Number\"} } ],\"tilestats\": {\"layerCount\": 1,\"layers\": [{\"layer\": \"prg\",\"count\": 140315,\"geometry\": \"Polygon\",\"attributeCount\": 1,\"attributes\": [{\"attribute\": \"cluster\",\"count\": 10,\"type\": \"number\",\"values\": [0,1,2,3,4,5,6,7,8,9],\"min\": 0,\"max\": 9}]}]}}"
+}

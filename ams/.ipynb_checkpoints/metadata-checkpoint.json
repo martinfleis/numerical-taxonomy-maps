@@ -1,0 +1,14 @@
+{
+"name": "ams/",
+"description": "ams/",
+"version": "2",
+"minzoom": "0",
+"maxzoom": "15",
+"center": "4.883423,52.372245,15",
+"bounds": "4.673289,52.218008,5.083742,52.527885",
+"type": "overlay",
+"format": "pbf",
+"generator": "tippecanoe v1.36.0",
+"generator_options": "tippecanoe -z15 --no-tile-compression '--output-to-directory=ams/' -f ams.geojson",
+"json": "{\"vector_layers\": [ { \"id\": \"ams\", \"description\": \"\", \"minzoom\": 0, \"maxzoom\": 15, \"fields\": {\"cluster\": \"Number\"} } ],\"tilestats\": {\"layerCount\": 1,\"layers\": [{\"layer\": \"ams\",\"count\": 252385,\"geometry\": \"Polygon\",\"attributeCount\": 1,\"attributes\": [{\"attribute\": \"cluster\",\"count\": 10,\"type\": \"number\",\"values\": [0,1,2,3,4,5,6,7,8,9],\"min\": 0,\"max\": 9}]}]}}"
+}

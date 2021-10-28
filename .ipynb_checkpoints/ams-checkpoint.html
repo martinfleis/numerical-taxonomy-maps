@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Numerical taxonomy of urban form in Amsterdam </title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- load leaflet.js -->
+    <!-- load CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+
+    <!-- load JS -->
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+
+    <!-- load VectorGrid extension -->
+    <script src="https://unpkg.com/leaflet.vectorgrid@1.3.0/dist/Leaflet.VectorGrid.bundled.js"></script>
+</head>
+
+<body style='margin:0'>
+    <!-- div containing map -->
+    <div id="map" style="width: 100vw; height: 100vh; background: #fdfdfd"></div>
+    <!-- specification of leaflet map -->
+    <script>
+        // create map
+        var map = L.map('map', {
+            center: [52.36, 4.89],
+            minZoom: 8,
+            maxZoom: 15,
+            zoomControl: true,
+            zoom: 13,
+        });
+
+        // add background basemap
+        var mapBaseLayer = L.tileLayer(
+            'https://stamen-tiles-{s}.a.ssl.fastly.net/toner-lite/{z}/{x}/{y}{r}.png', {
+                attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }
+        ).addTo(map);
+
+        // get vector tiles URL
+        var mapUrl = "ams/{z}/{x}/{y}.pbf";
+
+        // mapping of colors to signature types
+        const cmap = {
+            "0": "#ef726b",
+            "1": "#8b97b2",
+            "2": "#9f9f9f",
+            "3": "#67a4de",
+            "4": "#777777",
+            "5": "#9dc3e6",
+            "6": "#b9d2ea",
+            "7": "#485b88",
+            "8": "#f0a4a0",
+            "9": "#bcd34f",
+        };
+
+        // define styling of vector tiles
+        var vectorTileStyling = {
+            ams: function(properties) {
+                return ({
+                    fill: true,
+                    fillColor: cmap[properties.cluster],
+                    fillOpacity: 1,
+                    weight: 0,
+                });
+            }
+        }
+
+        // define options of vector tiles
+        var mapVectorTileOptions = {
+            rendererFactory: L.canvas.tile,
+            interactive: true,
+            attribution: '(C) <a href="https://martinfleischmann.net">Martin Fleischmann</a>',
+            maxNativeZoom: 15,
+            minZoom: 6,
+            vectorTileLayerStyles: vectorTileStyling,
+        };
+
+        // create VectorGrid layer
+        var mapPbfLayer = new L.VectorGrid.Protobuf(
+            mapUrl, mapVectorTileOptions
+        )
+
+        // add VectorGrid layer to map
+        mapPbfLayer.addTo(map);
+        
+        var mapLabels = L.tileLayer(
+            'https://stamen-tiles-{s}.a.ssl.fastly.net/toner-labels/{z}/{x}/{y}{r}.png', {
+                attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }
+        ).addTo(map);
+        
+        L.control.scale().addTo(map);
+    </script>
+</body>
+
+</html>
